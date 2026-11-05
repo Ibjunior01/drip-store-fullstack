@@ -1,0 +1,14 @@
+.conteudo-principal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background-color: #ffffff;
+}
