@@ -1,0 +1,152 @@
+.header {
+  width: 100%;
+  padding: 32px 24px 20px;
+  background: #ffffff;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.header-logo {
+  flex-shrink: 0;
+}
+
+.header-logo img {
+  display: block;
+  width: 253px;
+  max-width: 100%;
+}
+
+.header-search {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.header-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  outline-offset: 2px;
+  font: inherit;
+}
+
+.header-search button {
+  border: none;
+  background: transparent;
+  padding: 12px 16px;
+  cursor: pointer;
+  color: #8f8f8f;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  white-space: nowrap;
+}
+
+.register {
+  color: #474747;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 114px;
+  height: 40px;
+  border-radius: 4px;
+  background: #c92071;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cart {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.header-nav {
+  display: flex;
+  gap: 32px;
+  margin-top: 36px;
+}
+
+.header-nav a {
+  color: #474747;
+  text-decoration: none;
+  padding-bottom: 5px;
+}
+
+.header-nav a.active {
+  color: #c92071;
+  font-weight: 700;
+  border-bottom: 2px solid #c92071;
+}
+
+@media (max-width: 900px) {
+  .header-top {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .header-search {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .header-nav {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .header {
+    padding: 20px 16px;
+  }
+
+  .header-logo img {
+    width: 160px;
+  }
+
+  .header-actions {
+    gap: 12px;
+  }
+
+  .register {
+    display: none;
+  }
+
+  .login {
+    width: 76px;
+  }
+
+  .header-nav {
+    gap: 12px;
+    font-size: 13px;
+  }
+}

@@ -1,28 +1,35 @@
+import { Routes, Route } from "react-router";
+
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import "./App.css";
 
+import HomePage from "./pages/HomePage";
+import ProductListingPage from "./pages/ProductListingPage";
+import ProductViewPage from "./pages/ProductViewPage";
+
+import "./App.css";
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
-      
-      <main className="conteudo-principal">
-        <section>
-          <h2>Bem-vindo à Drip Store</h2>
-          <p>Encontre os melhores produtos aqui!</p>
-        </section>
 
-        <section>
-          <h2>Produtos em destaque</h2>
-          <p>Confira nossas ofertas especiais</p>
-        </section>
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<ProductListingPage />} />
+        <Route path="/products/:id" element={<ProductViewPage />} />
+        <Route
+          path="*"
+          element={
+            <main className="catalog-page">
+              <h1>Página não encontrada</h1>
+            </main>
+          }
+        />
+      </Routes>
 
       <Footer />
-        
-    </div>
+    </>
   );
 }
 

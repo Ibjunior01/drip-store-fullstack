@@ -1,9 +1,9 @@
 function Footer() {
-    return (
-        <footer>
-            <p>Drip Store - Todos os direitos reservados.</p>
-        </footer>
-    );
+  return (
+    <footer>
+      <p>© 2026 Drip Store. Todos os direitos reservados.</p>
+    </footer>
+  );
 }
 
 export default Footer;
