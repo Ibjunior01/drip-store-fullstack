@@ -79,7 +79,97 @@ async function createUser(data) {
   };
 }
 
+
+function validateId(id) {
+  const value = String(id);
+
+  if (!/^[1-9]\d*$/.test(value) ||
+      !Number.isSafeInteger(Number(value))) {
+    return null;
+  }
+
+  return Number(value);
+}
+
+function publicUser(user) {
+  return {
+    id: user.id,
+    firstname: user.firstname,
+    surname: user.surname,
+    email: user.email,
+  };
+}
+
+async function getUserById(id) {
+  const userId = validateId(id);
+
+  if (!userId) return null;
+
+  const user = await User.findByPk(userId);
+
+  return user ? publicUser(user) : null;
+}
+
+async function updateUser(id, data) {
+  const userId = validateId(id);
+
+  if (!userId) return false;
+
+  const user = await User.findByPk(userId);
+
+  if (!user) return false;
+
+  const { firstname, surname, email } = data || {};
+
+  if (
+    typeof firstname !== 'string' ||
+    !firstname.trim() ||
+    typeof surname !== 'string' ||
+    !surname.trim() ||
+    typeof email !== 'string' ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
+  ) {
+    throw new ValidationError('Dados inválidos.');
+  }
+
+  const normalizedEmail = email.trim().toLowerCase();
+
+  const existing = await User.findOne({
+    where: { email: normalizedEmail },
+  });
+
+  if (existing && existing.id !== user.id) {
+    throw new ValidationError('E-mail já cadastrado.');
+  }
+
+  await user.update({
+    firstname: firstname.trim(),
+    surname: surname.trim(),
+    email: normalizedEmail,
+  });
+
+  return true;
+}
+
+async function deleteUser(id) {
+  const userId = validateId(id);
+
+  if (!userId) return false;
+
+  const user = await User.findByPk(userId);
+
+  if (!user) return false;
+
+  await user.destroy();
+
+  return true;
+}
+
+
 module.exports = {
   createUser,
+  getUserById,
+  updateUser,
+  deleteUser,
   ValidationError,
 };
