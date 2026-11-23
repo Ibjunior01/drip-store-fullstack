@@ -1,12 +1,13 @@
 
 const express = require('express');
+
 const userRoutes = require('./routes/userRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 
 const app = express();
 
 app.use(express.json());
 
-// Verificação de funcionamento da API
 app.get('/health', (req, res) => {
   return res.status(200).json({
     status: 'ok',
@@ -14,7 +15,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Rotas de usuários
 app.use('/v1/user', userRoutes);
+app.use('/v1/category', categoryRoutes);
 
 module.exports = app;
