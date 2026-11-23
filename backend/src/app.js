@@ -1,17 +1,20 @@
 
 const express = require('express');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
-// Permite que a API receba dados em formato JSON.
 app.use(express.json());
 
-// Endpoint para verificar se a API está funcionando.
+// Verificação de funcionamento da API
 app.get('/health', (req, res) => {
   return res.status(200).json({
     status: 'ok',
     service: 'drip-store-api',
   });
 });
+
+// Rotas de usuários
+app.use('/v1/user', userRoutes);
 
 module.exports = app;
